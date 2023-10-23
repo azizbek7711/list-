@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> <a href="{% url 'student' %} "> category</a></h1>
+  <form action="{% url 'talaba' %}" method="post">{% csrf_token %}
+      <input type="text" name = 'name' placeholder="name">
+      <input type="text" name = 'title' placeholder="title">
+      <input type="datetime-local" name = 'date'>
+      <select name = "category" id="">
+          {% for i in category %}
+          <option value="{{ i.id }}">{{i.name}}</option>
+          {% endfor %}
+      </select>
+      <input type="submit" value="saqlash">
+  </form>
+   <table border="9">
+      <thead>
+      <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>title</th>
+          <th>date</th>
+          <th>category</th>
+          <th>edit</th>
+          <th>delete</th>
+      </tr>
+
+      </thead>
+      <tbody>
+       {% for i in student %}
+          <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ i.name }}</td>
+              <td>{{ i.title }}</td>
+              <td>{{ i.date }}</td>
+              <td>{{ i.category.name }}</td>
+              <td><a href="{% url 'talaba-update' i.id %}">edit</a></td>
+              <td><a href="{% url 'talaba-delete' i.id %}">delete</a></td>
+          </tr>
+       {% endfor %}
+      </tbody>
+  </table>
+</body>
+</html>
+

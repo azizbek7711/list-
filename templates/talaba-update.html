@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>talaba-update  {{ student.name }}</h1>
+    <form action="{% url 'talaba-update' student.id %}" method="post">{% csrf_token %}
+      <input type="text" name = 'name' placeholder="name" value="{{ student.name}}">
+      <input type="text" name = 'title' placeholder="title" value="{{student.title}}">
+      <input type="datetime-local" name = 'date' value="{{ student.date }}">
+      <select name = "category" id="">
+          {% for i in category %}
+               {% if student.category.id == i.id %}
+               <option value="{{ i.id }}" selected>{{i.name}}</option>
+               {% else %}
+               <option value="{{ i.id }}">{{i.name}}</option>
+               {% endif %}
+          {% endfor %}
+      </select>
+      <input type="submit" value="saqlash">
+    </form>
+</body>
+</html>

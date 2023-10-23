@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <h1> <a href="{% url 'talaba' %} "> student</a></h1>
+  <h1>salom</h1>
+  <form action="{% url 'student' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+    <input type="text" name="name" placeholder="name">
+    <input type="file" name="photo">
+    <input type="submit" value="saqlash">
+  </form>
+  <table border="1">
+      <thead>
+      <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>img</th>
+      </tr>
+      </thead>
+      <tbody>
+       {% for i in category %}
+          <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ i.name }}</td>
+              <td><img src="{{ i.photo.url }}"  width="350" height="300" alt=""></td>
+          </tr>
+       {% endfor %}
+      </tbody>
+  </table>
+</body>
+</html>
